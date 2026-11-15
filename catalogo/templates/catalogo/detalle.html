@@ -1,0 +1,16 @@
+{% extends 'catalogo/base.html' %}
+{% load formatos %}
+{% block contenido %}
+<a href="{% url 'catalogo' %}">&larr; Volver</a>
+<h1>{{ comic.titulo }}</h1>
+<img src="{{ comic.portada.url }}" alt="{{ comic.titulo }}" style="max-width:300px">
+<ul>
+  <li>Editorial: {{ comic.editorial }}</li>
+  <li>Autor: {{ comic.autor }}</li>
+  <li>Tomo: {{ comic.tomo }}</li>
+  <li>Tapa dura: {{ comic.tapa_dura|yesno:"Sí,No" }}</li>
+  <li>Precio: {{ comic.precio|pesos }}</li>
+  <li>Stock: {{ comic.stock }}</li>
+  <li>Disponible: {{ comic.disponible|yesno:"Sí,No" }}</li>
+</ul>
+{% endblock %}

@@ -15,7 +15,7 @@
 <div class="grid">
   {% for comic in comics %}
     <div class="card">
-      <a href="#"><img src="{{ comic.portada.url }}" alt="{{ comic.titulo }}"></a>
+      <a href="{% url 'detalle' comic.pk %}"><img src="{{ comic.portada.url }}" alt="{{ comic.titulo }}"></a>
       <h3>{{ comic.titulo }}</h3>
       <p>{{ comic.editorial }}</p>
       <p>{{ comic.precio|pesos }}</p>
