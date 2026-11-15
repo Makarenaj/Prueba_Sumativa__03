@@ -1,0 +1,18 @@
+{% extends 'catalogo/base.html' %}
+{% load formatos %}
+{% block contenido %}
+<h1>Catálogo</h1>
+<div class="grid">
+  {% for comic in comics %}
+    <div class="card">
+      <a href="#"><img src="{{ comic.portada.url }}" alt="{{ comic.titulo }}"></a>
+      <h3>{{ comic.titulo }}</h3>
+      <p>{{ comic.editorial }}</p>
+      <p>{{ comic.precio|pesos }}</p>
+      {% if comic.stock == 0 %}<p class="agotado">Agotado</p>{% endif %}
+    </div>
+  {% empty %}
+    <p>No hay cómics disponibles.</p>
+  {% endfor %}
+</div>
+{% endblock %}
