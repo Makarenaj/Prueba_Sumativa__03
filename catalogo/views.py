@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from .forms import ReservaForm
 from .models import Comic, Editorial
 
 
@@ -21,4 +22,13 @@ def catalogo(request):
     
 def detalle(request, pk):
     comic = get_object_or_404(Comic, pk=pk, disponible=True)
-    return render(request, 'catalogo/detalle.html', {'comic': comic})
+
+    if request.method == 'POST' and comic.stock > 0:
+        form = ReservaForm(request.POST, comic=comic)
+        if form.is_valid():
+            reserva = form.save()
+            return redirect('comprobante', codigo=reserva.codigo)
+    else:
+        form = ReservaForm(comic=comic)
+
+    return render(request, 'catalogo/detalle.html', {'comic': comic, 'form': form})
