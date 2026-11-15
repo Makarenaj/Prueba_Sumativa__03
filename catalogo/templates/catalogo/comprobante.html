@@ -1,0 +1,15 @@
+{% extends 'catalogo/base.html' %}
+{% load formatos %}
+{% block contenido %}
+<h1>Comprobante de reserva</h1>
+<ul>
+  <li>Código: <strong>{{ reserva.codigo }}</strong></li>
+  <li>Cómic: {{ reserva.comic }}</li>
+  <li>Nombre: {{ reserva.nombre }}</li>
+  <li>RUT: {{ reserva.rut }}</li>
+  <li>Cantidad: {{ reserva.cantidad }}</li>
+  <li>Total: {{ reserva.total|pesos }}</li>
+  <li>Fecha: {{ reserva.fecha|date:"d/m/Y H:i" }}</li>
+</ul>
+<a href="{% url 'catalogo' %}">Volver al catálogo</a>
+{% endblock %}
